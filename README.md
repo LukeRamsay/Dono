@@ -13,7 +13,10 @@
 
 # Getting started
 #### Prerequisites 
-
+ 
+ Make sure to add the nuget package for the sql server byu typing Install-Package Microsoft.EntityFrameworkCore.SqlServer in the package manager console 
+ Also make sure the connection strings in appsetting.json are correct for your operating system and database tyype whether that be sql or sqllite an dso on
+ Lastly make sure to run the migrations If needed and update the database by running this in the package managaer console DONT FORGET THE CONTEXT Add-Migration InitialCreate -Context DonoListingsContext  Update-Database
 * 
 
 #### How to Install

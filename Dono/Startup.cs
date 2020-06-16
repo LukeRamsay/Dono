@@ -27,6 +27,9 @@ namespace Dono
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<DonoListingsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DonoListingsContext")));
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
