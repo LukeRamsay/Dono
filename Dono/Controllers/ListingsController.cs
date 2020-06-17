@@ -81,7 +81,8 @@ namespace Dono.Controllers
                 {
                     await listings.ImageFile.CopyToAsync(fileStream);
                 }
-                listings.UserId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                //using http context to get  the value of the current logged in users name (was using claimtypes.nameIdentifier which gets the current ID but I cant call the id into the view so I switched to using the name which I can use in the view)
+                listings.UserId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
                 _context.Add(listings);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
