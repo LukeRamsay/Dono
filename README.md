@@ -16,8 +16,11 @@ So something I’ve recently noticed is that a lot of people that have all of a 
 You will need to have the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download) Installed as well as [Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
 Once you have loaded the project into visual studio do the following
 
-2. Add the nuget package for the sql server by typing ```bash 
-Install-Package Microsoft.EntityFrameworkCore.SqlServer ``` in the package manager console
+2. Add the nuget package for the sql server by typing 
+```bash 
+Install-Package Microsoft.EntityFrameworkCore.SqlServer 
+``` 
+in the package manager console
 
 3. Make sure the connection strings in appsetting.json are correct for your operating system and database type whether that be SQL, SQLite  or mySQL
 
