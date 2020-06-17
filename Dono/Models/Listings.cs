@@ -42,7 +42,6 @@ namespace Dono.Models
         [Display(Name = "Location")]
         public string Location { get; set; }
 
-        [NotMapped]
         [Display(Name = "User ID")]
         public string UserId { get; set; }
 
