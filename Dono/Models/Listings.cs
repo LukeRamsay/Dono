@@ -16,7 +16,7 @@ namespace Dono.Models
 
         [Required(ErrorMessage = "Please enter a short title for your donation")]
         [Display(Name = "Title")]
-        [StringLength(100)]
+        [StringLength(20)]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please describe your donation")]
