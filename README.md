@@ -16,21 +16,9 @@ So something I’ve recently noticed is that a lot of people that have all of a 
 You will need to have the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download) Installed as well as [Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
 Once you have loaded the project into visual studio do the following
 
-2. Add the nuget package for the sql server by typing 
-```bash 
-Install-Package Microsoft.EntityFrameworkCore.SqlServer 
-``` 
-in the package manager console
-
-3. Make sure the connection strings in appsetting.json are correct for your operating system and database type whether that be SQL, SQLite  or mySQL
-
-4. Lastly make sure to run the migrations If needed and update the database by running this in the package managaer console **DONT FORGET THE CONTEXT**  
-```bash
-Add-Migration InitialCreate -Context DonoListingsContext  Update-Database
-```
 
 ## Installation
-Clone this repository and open the solution in **Visual Studio 2019**
+1. Clone this repository and open the solution in **Visual Studio 2019**
 ```bash
 git clone git@github.com:LukeRamsay/<Dono>.git
 ```
@@ -38,6 +26,18 @@ or
 
 ```sh
 git clone https://github.com/LukeRamsay/Dono.git
+```
+
+2. Add the nuget package for the sql server by typing the following into the package manager console 
+```bash 
+Install-Package Microsoft.EntityFrameworkCore.SqlServer 
+``` 
+
+3. Make sure the connection strings in appsetting.json are correct for your operating system and database type whether that be SQL, SQLite  or mySQL
+
+4. Lastly make sure to run the migrations If needed and update the database by running this in the package managaer console **DONT FORGET THE CONTEXT**  
+```bash
+Add-Migration InitialCreate -Context DonoListingsContext  Update-Database
 ```
 
 # Features and functionality
