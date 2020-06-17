@@ -4,7 +4,7 @@
 @using System.Security.Claims
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Donation Listings";
 }
 
 @{
@@ -13,7 +13,7 @@
 
 
 
-<h1>Index</h1>
+<h1>Donation Listings</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -65,9 +65,8 @@
                     @Html.DisplayFor(modelItem => item.UserId)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                 </td>
             </tr>
         }

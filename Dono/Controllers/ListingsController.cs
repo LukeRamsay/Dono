@@ -98,6 +98,8 @@ namespace Dono.Controllers
                 return NotFound();
             }
 
+
+
             var listings = await _context.Listings.FindAsync(id);
             if (listings == null)
             {
@@ -111,7 +113,7 @@ namespace Dono.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,ImageName,DatePosted,Location,UserId")] Listings listings)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,ImageFile,DatePosted,Location,UserId")] Listings listings)
         {
             if (id != listings.Id)
             {
@@ -122,6 +124,16 @@ namespace Dono.Controllers
             {
                 try
                 {
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(listings.ImageFile.FileName);
+                    string extension = Path.GetExtension(listings.ImageFile.FileName);
+                    listings.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await listings.ImageFile.CopyToAsync(fileStream);
+                    }
+                    listings.UserId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;
                     _context.Update(listings);
                     await _context.SaveChangesAsync();
                 }
