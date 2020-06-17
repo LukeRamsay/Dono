@@ -1,6 +1,6 @@
 # StockCheck
 
-### An ASP.NET Core Web app designed to act as a donation platform for those in need during the covid 19 pandemic
+## An ASP.NET Core Web app designed to act as a donation platform for those in need during the covid 19 pandemic
 
 # Introduction
 
@@ -11,7 +11,7 @@ For this term we were tasked with creating a robust covid-19 relief app that sol
 So something I’ve recently noticed is that a lot of people that have all of a sudden become really generous ever since the effects of coronavirus have been seen. The problem with this is that there is a disconnect between the two groups of people. People who would like to donate don't really know how they could help and people who need help don't know where they can get it. So my concept is to create a donation platform where people who want to help can create listings for items they would like to donate and people who need help can browse the listing to see if there’s anything they could use.  So my target audience will be both people who are looking to help others and people who are looking for help themselves.
 
 # Getting started
-#### Prerequisites 
+## Prerequisites
 
 You will need to have the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download) Installed as well as [Visual Studio 2019](https://visualstudio.microsoft.com/vs/)
 Once you have loaded the project into visual studio do the following
@@ -35,7 +35,7 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 3. Make sure the connection strings in appsetting.json are correct for your operating system and database type whether that be SQL, SQLite  or mySQL
 
-4. Lastly make sure to run the migrations If needed and update the database by running this in the package managaer console **DONT FORGET THE CONTEXT**  
+4. Lastly make sure to run the migrations If needed and update the database by running this in the package managaer console **DONT FORGET THE CONTEXT** the context is need to declare which context file you want to update or migrate because I have two database's
 ```bash
 Add-Migration InitialCreate -Context DonoListingsContext  Update-Database
 ```
