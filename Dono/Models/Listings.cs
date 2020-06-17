@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dono.Models
 {   
@@ -19,9 +21,13 @@ namespace Dono.Models
         [Display(Name = "Description")]
         public string Body { get; set; }
 
+        [Display(Name = "Image Name")]
+        public string ImageName { get; set; }
+
+        [NotMapped]
         [Required(ErrorMessage = "Please upload an image of your donation")]
         [Display(Name = "Image")]
-        public string Image { get; set; }
+        public IFormFile ImageFile { get; set; }
 
         //Setting the date and time that the listing was created
         private DateTime? dateCreated;

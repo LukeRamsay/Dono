@@ -4,14 +4,16 @@ using Dono.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dono.Migrations
 {
     [DbContext(typeof(DonoListingsContext))]
-    partial class DonoListingsContextModelSnapshot : ModelSnapshot
+    [Migration("20200616233522_AddedImages")]
+    partial class AddedImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,9 +34,6 @@ namespace Dono.Migrations
 
                     b.Property<DateTime>("DatePosted")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
                         .IsRequired()

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Dono.Data;
 using Dono.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace Dono.Controllers
 {
@@ -14,9 +16,13 @@ namespace Dono.Controllers
     {
         private readonly DonoListingsContext _context;
 
-        public ListingsController(DonoListingsContext context)
+        //For image uploading
+        private readonly IWebHostEnvironment _hostEnvironment;
+
+        public ListingsController(DonoListingsContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Listings
@@ -54,10 +60,20 @@ namespace Dono.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Body,Image,DatePosted,Location,UserId")] Listings listings)
+        public async Task<IActionResult> Create([Bind("Id,Title,Body,ImageFile,DatePosted,Location,UserId")] Listings listings)
         {
             if (ModelState.IsValid)
             {
+                //Save image to wwwroot/image
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(listings.ImageFile.FileName);
+                string extension = Path.GetExtension(listings.ImageFile.FileName);
+                listings.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/Image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await listings.ImageFile.CopyToAsync(fileStream);
+                }
                 _context.Add(listings);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -86,7 +102,7 @@ namespace Dono.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,Image,DatePosted,Location,UserId")] Listings listings)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,ImageName,DatePosted,Location,UserId")] Listings listings)
         {
             if (id != listings.Id)
             {
@@ -140,6 +156,12 @@ namespace Dono.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var listings = await _context.Listings.FindAsync(id);
+
+            //Deleting the image from local files
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "image", listings.ImageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
+
             _context.Listings.Remove(listings);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
