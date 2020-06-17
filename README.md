@@ -43,24 +43,24 @@ Add-Migration InitialCreate -Context DonoListingsContext  Update-Database
 # Features and functionality
 
 ### Core Functionality
-    Users can sign up and login
-    Donation listings are fully working with CRUD
-    Users can see their own created listings - one to many relationship
+   * Users can sign up and login
+   * Donation listings are fully working with CRUD
+   * Users can see their own created listings - one to many relationship
 
 ### Additional Functionality
-    Image Uploading saves to local and saves name to database
-    Images can be deleted, deleted from local files and deletes from the database
-    Automatically tracks the time and date when a listing is created
-    Users can view their profile and update their user data
+   * Image Uploading saves to local and saves name to database
+   * Images can be deleted, deleted from local files and deletes from the database
+   * Automatically tracks the time and date when a listing is created
+   * Users can view their profile and update their user data
 
 ### Future Functionality
    * Searching + Filtering of listings
-    * Add categories to listings
-    * Google maps implementation for listing location
-    * Comments on a listing
-    * Bookmark a donation
-    * View others profiles
-    * Update Styling
+   * Add categories to listings
+   * Google maps implementation for listing location
+   * Comments on a listing
+   * Bookmark a donation
+   * View others profiles
+   * Update Styling
   
 
 # Built with
@@ -90,4 +90,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 #### Thanks to ......
 * My Lecturer [Ruan](https://github.com/RuanOW) for helping me to finally understand MVC and for all the classes and recordings
 
-*  [Microsoft .NET Core Documentation](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/?view=aspnetcore-3.1)
+* [Microsoft .NET Core Documentation](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/?view=aspnetcore-3.1)
