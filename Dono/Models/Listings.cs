@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Dono.Models
 {   
@@ -39,8 +41,11 @@ namespace Dono.Models
         [Required(ErrorMessage = "Please add your adress")]
         [Display(Name = "Location")]
         public string Location { get; set; }
+
+        [NotMapped]
         [Display(Name = "User ID")]
         public string UserId { get; set; }
 
+        
     }
 }

@@ -28,6 +28,7 @@ namespace Dono
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddHttpContextAccessor();
             services.AddDbContext<DonoListingsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DonoListingsContext")));
             services.AddDbContext<ApplicationDbContext>(options =>

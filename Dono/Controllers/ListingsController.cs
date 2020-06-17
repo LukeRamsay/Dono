@@ -9,25 +9,32 @@ using Dono.Data;
 using Dono.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Dono.Controllers
 {
     public class ListingsController : Controller
     {
         private readonly DonoListingsContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         //For image uploading
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ListingsController(DonoListingsContext context, IWebHostEnvironment hostEnvironment)
+        public ListingsController(DonoListingsContext context, IWebHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             this._hostEnvironment = hostEnvironment;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: Listings
         public async Task<IActionResult> Index()
-        {
+        {   
+            
             return View(await _context.Listings.ToListAsync());
         }
 
@@ -74,6 +81,7 @@ namespace Dono.Controllers
                 {
                     await listings.ImageFile.CopyToAsync(fileStream);
                 }
+                listings.UserId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _context.Add(listings);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
